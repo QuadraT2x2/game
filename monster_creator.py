@@ -1,5 +1,5 @@
 import random
-from arena_test import Character, Hero
+from characters import Character, Hero
 from inventory import Health_potion
 import numpy as np
 
@@ -8,30 +8,6 @@ class Property:
         self.name = name
         self.attack_bonus = attack_bonus
         self.health_bonus = health_bonus
-
-properties = [
-    Property('survivalist', 140, 0),
-    Property('strong', 0, 25),
-    Property('berserk', -100, 50),
-    Property('elite', 200, 30),
-    Property('weak', -30, -10)
-]
-
-characters = [
-    Character('cat', 50, 15),
-    Character('dog', 70, 10),
-    Character('chicken', 60, 20),
-    Character('dragon', 150, 40),
-    Character('tiger', 100, 30)
-]
-
-heroes = [
-    Hero('Alexa', 400, 35, 'agility', 3, 5, 2),
-    Hero('Max', 650, 30, 'strength', 6, 3, 1)
-]
-
-#thief = Hero('Alexa', 400, 35, 'agility', 3, 5, 2)
-#defender = Hero('Max', 650, 30, 'strength', 6, 3, 1)
 
 class Monster_creater:
     def __init__(self, base_character_list, property_list):
