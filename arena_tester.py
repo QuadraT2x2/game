@@ -1,5 +1,6 @@
 from characters import Character, Hero
 from monster_creator import Property, Monster_creater
+from inventory import Health_potion
 import numpy as np
 
 
@@ -18,19 +19,29 @@ characters = [
     Character('dragon', 150, 40),
     Character('tiger', 100, 30)
 ]
-
+'''
 heroes = [
     Hero('Alexa', 400, 35, 'agility', 3, 5, 2),
     Hero('Max', 650, 30, 'strength', 6, 3, 1),
     Hero('Furion', 350, 25, 'intelligence', 2, 4, 7)
 ]
-
-#thief = Hero('Alexa', 400, 35, 'agility', 3, 5, 2)
-#defender = Hero('Maximus', 650, 30, 'strength', 6, 3, 1)
-#prophet = Hero('Furion', 350, 25, 'intelligence', 2, 4, 7)
+'''
+thief = Hero('Alexa', 400, 35, 'agility', 3, 5, 2)
+defender = Hero('Maximus', 650, 30, 'strength', 6, 3, 1)
+prophet = Hero('Furion', 350, 25, 'intelligence', 2, 4, 7)
 
 create_5_monsters_no_prop = (np.random.choice(characters, 5).tolist())
 print(create_5_monsters_no_prop, end='\n'+'*' * 30+'\n')
 
 create_25_monsters = [Monster_creater(characters, properties).generate_monster() for i in range(25)]
 print(create_25_monsters)
+
+potion = Health_potion('potion of healing', 30)
+[thief.inventory.add_item(potion) for i in range(3)]
+print(thief.inventory)
+
+create_5_monsters_no_prop[0].fight(thief)
+
+thief.try_to_drink_health_potion()
+print(thief.inventory)
+print(thief)
