@@ -22,7 +22,7 @@ class Monster_creater:
         # количество n проперти
         prop_list = (np.random.choice(self.property_list, n_properties, replace=False).tolist())
         a = len(prop_list)
-        names_prop = ['']
+        names_prop = []
         hp_bonus = 0
         att_bonus = 0
         for i in range(a):
@@ -32,8 +32,11 @@ class Monster_creater:
         sort_names_prop = sorted(names_prop)
         result_name = ' '.join(sort_names_prop)
         # возвращает персонажа с проп
-        new_character = Character((person.name + result_name).capitalize(), hp_bonus + person.max_health,
-                                  att_bonus + person.get_attack_damage())
+        if hp_bonus != 0 and att_bonus != 0:
+            new_character = Character((result_name + ' ' + person.name).capitalize(), hp_bonus + person.max_health,
+                                      att_bonus + person.get_attack_damage())
+        else:
+            new_character = Character((f'{person.name}').capitalize(), person.max_health, person.get_attack_damage())
         return new_character
 
     def generate_monster(self):
