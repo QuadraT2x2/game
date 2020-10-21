@@ -32,9 +32,11 @@ class Monster_creater:
         sort_names_prop = sorted(names_prop)
         result_name = ' '.join(sort_names_prop)
         # возвращает персонажа с проп
-        if hp_bonus < 0:
-            reroll = Monster_creater(self.base_character_list, self.property_list).generate_monster()
-            return reroll
+        if (person.max_health + hp_bonus) < 1:
+            #reroll = Monster_creater(self.base_character_list, self.property_list).generate_monster()
+            #return reroll
+            x = 'хуйНЯ'
+            return x
         else:
             if hp_bonus != 0 and att_bonus != 0:
                 new_character = Character((result_name + ' ' + person.name).capitalize(), hp_bonus + person.max_health,
@@ -47,7 +49,6 @@ class Monster_creater:
         n_properties = random.randint(0, len(self.property_list))
         new_character = self.__generate_monster(n_properties)
         return new_character
-
 
 class RandomSampler:
     def __init__(self, spisok):
