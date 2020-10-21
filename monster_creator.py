@@ -33,7 +33,7 @@ class Monster_creater:
         result_name = ' '.join(sort_names_prop)
         # возвращает персонажа с проп
         if hp_bonus < 0:
-            reroll = Monster_creater(characters, properties).generate_monster()
+            reroll = Monster_creater(self.base_character_list, self.property_list).generate_monster()
             return reroll
         else:
             if hp_bonus != 0 and att_bonus != 0:
