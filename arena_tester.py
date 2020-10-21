@@ -37,7 +37,9 @@ create_25_monsters = [Monster_creater(characters, properties).generate_monster()
 print(create_25_monsters)
 
 potion = Health_potion('potion of healing', 30)
-[thief.inventory.add_item(potion) for i in range(3)]
+thief.inventory.add_item(potion)
+thief.inventory.add_item(potion)
+thief.inventory.add_item(potion)
 print(thief.inventory)
 
 create_5_monsters_no_prop[0].fight(thief)

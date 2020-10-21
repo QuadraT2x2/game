@@ -32,12 +32,16 @@ class Monster_creater:
         sort_names_prop = sorted(names_prop)
         result_name = ' '.join(sort_names_prop)
         # возвращает персонажа с проп
-        if hp_bonus != 0 and att_bonus != 0:
-            new_character = Character((result_name + ' ' + person.name).capitalize(), hp_bonus + person.max_health,
-                                      att_bonus + person.get_attack_damage())
+        if hp_bonus < 0:
+            reroll = Monster_creater(characters, properties).generate_monster()
+            return reroll
         else:
-            new_character = Character((f'{person.name}').capitalize(), person.max_health, person.get_attack_damage())
-        return new_character
+            if hp_bonus != 0 and att_bonus != 0:
+                new_character = Character((result_name + ' ' + person.name).capitalize(), hp_bonus + person.max_health,
+                                          att_bonus + person.get_attack_damage())
+            else:
+                new_character = Character((f'{person.name}').capitalize(), person.max_health, person.get_attack_damage())
+            return new_character
 
     def generate_monster(self):
         n_properties = random.randint(0, len(self.property_list))
