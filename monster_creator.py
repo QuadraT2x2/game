@@ -3,11 +3,13 @@ from characters import Character, Hero
 from inventory import Health_potion
 import numpy as np
 
+
 class Property:
     def __init__(self, name, health_bonus, attack_bonus):
         self.name = name
         self.attack_bonus = attack_bonus
         self.health_bonus = health_bonus
+
 
 class Monster_creater:
     def __init__(self, base_character_list, property_list):
@@ -20,7 +22,7 @@ class Monster_creater:
         # количество n проперти
         prop_list = (np.random.choice(self.property_list, n_properties, replace=False).tolist())
         a = len(prop_list)
-        names_prop = []
+        names_prop = ['']
         hp_bonus = 0
         att_bonus = 0
         for i in range(a):
@@ -29,9 +31,8 @@ class Monster_creater:
             att_bonus += prop_list[i].attack_bonus
         sort_names_prop = sorted(names_prop)
         result_name = ' '.join(sort_names_prop)
-        result_name = result_name.capitalize()
         # возвращает персонажа с проп
-        new_character = Character(result_name + ' ' + person.name, hp_bonus + person.max_health,
+        new_character = Character((person.name + result_name).capitalize(), hp_bonus + person.max_health,
                                   att_bonus + person.get_attack_damage())
         return new_character
 
