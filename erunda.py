@@ -14,13 +14,14 @@ red = (255, 0, 0)
 green = (0, 255, 0)
 white = (255, 255, 255)
 
-columns = 20
-rows = 20
+columns = 3
+rows = 3
 
 
 mas = [[0] * columns for i in range(rows)]
 
 while True:
+    # обработка событий
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -31,6 +32,8 @@ while True:
             column = x_mouse // (margin + width)
             row = y_mouse // (margin + height)
             mas[row][column] ^= 1
+    # Отрисовка экрана
+    # рисует наши квадратики
     for row in range(rows):
         for column in range(columns):
             if mas[row][column] == 1:
@@ -40,5 +43,7 @@ while True:
             x = column * width + (column + 1) * margin
             y = row * height + (row + 1) * margin
             pygame.draw.rect(screen, color, (x, y, width, height))
+    # добавить строчку, которая будет рисовать картинку.
 
+    # обновляет картинку
     pygame.display.update()
