@@ -33,7 +33,8 @@ prophet = Hero('Furion', 350, 25, 'intelligence', 2, 4, 7)
 create_5_monsters_no_prop = (np.random.choice(characters, 5).tolist())
 print(create_5_monsters_no_prop, end='\n'+'*' * 30+'\n')
 
-create_25_monsters = [Monster_creater(characters, properties).generate_monster() for i in range(25)]
+monster_creater = Monster_creater(characters, properties)
+create_25_monsters = [monster_creater.generate_monster() for i in range(25)]
 print(create_25_monsters)
 
 potion = Health_potion('potion of healing', 30)

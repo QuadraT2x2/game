@@ -33,7 +33,7 @@ class Monster_creater:
         result_name = ' '.join(sort_names_prop)
         # возвращает персонажа с проп
         if (person.max_health + hp_bonus) < 1:
-            reroll = Monster_creater(self.base_character_list, self.property_list).generate_monster()
+            reroll = self.__generate_monster(n_properties)
             return reroll
         else:
             if hp_bonus != 0 and att_bonus != 0:
