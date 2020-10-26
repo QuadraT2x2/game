@@ -5,14 +5,13 @@ pygame.init()
 width = height = 110
 margin = 25
 columns = rows = 6
-screen = pygame.display.set_mode(
-    ((width * columns) + (margin * (columns + 1)), (height * rows) + margin * (rows + 1))
-)
+screenx = (width * columns) + (margin * (columns + 1))
+screeny = (height * rows) + margin * (rows + 1)
+screen = pygame.display.set_mode((screenx, screeny))
 pygame.display.set_caption('Erunda')
 background = pygame.image.load("bricks.jpg")
 img = pygame.image.load("ayaya.jpg")
 pygame.display.set_icon(img)
-
 black = (0, 0, 0)
 red = (255, 0, 0)
 green = (0, 255, 0)
@@ -40,13 +39,14 @@ while True:
     # рисует наши квадратики
     for row in range(rows):
         for column in range(columns):
-            if mas[row][column] == 1:
-                color = green
-            else:
-                color = white
             x = column * width + (column + 1) * margin
             y = row * height + (row + 1) * margin
-            pygame.draw.rect(screen, color, (x, y, width, height))
+            if mas[row][column] == 1:
+                image = pygame.transform.scale(img, (width, height))
+                screen.blit(image, (x, y))
+            else:
+                pygame.draw.rect(screen, white, (x, y, width, height))
+
 
     # обновляет картинку
     pygame.display.update()
