@@ -34,10 +34,10 @@ while True:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             x_mouse, y_mouse = pygame.mouse.get_pos()
             print(f'x = {x_mouse} y = {y_mouse}')
-            column = x_mouse // (margin + width)
+            column = min((columns - 1), x_mouse // (margin + width))
             # if column > columns:
                 # column -= 1
-            row = y_mouse // (margin + height)
+            row = min((rows - 1), y_mouse // (margin + height))
             # if row > rows:
                 # row -= 1
             print(f'row = {row} column = {column}')
