@@ -2,25 +2,29 @@ import pygame
 import sys
 #изменения
 pygame.init()
-screen = pygame.display.set_mode((1980, 980))
+width = height = 110
+margin = 25
+columns = rows = 6
+screen = pygame.display.set_mode(
+    ((width * columns) + (margin * (columns + 1)), (height * rows) + margin * (rows + 1))
+)
 pygame.display.set_caption('Erunda')
+background = pygame.image.load("bricks.jpg")
 img = pygame.image.load("ayaya.jpg")
 pygame.display.set_icon(img)
-width = height = 60
-margin = 20
 
 black = (0, 0, 0)
 red = (255, 0, 0)
 green = (0, 255, 0)
 white = (255, 255, 255)
 
-columns = 3
-rows = 3
 
 
 mas = [[0] * columns for i in range(rows)]
 
 while True:
+    # добавить строчку, которая будет рисовать картинку.
+    screen.blit(background, (0, 0))
     # обработка событий
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -43,7 +47,6 @@ while True:
             x = column * width + (column + 1) * margin
             y = row * height + (row + 1) * margin
             pygame.draw.rect(screen, color, (x, y, width, height))
-    # добавить строчку, которая будет рисовать картинку.
 
     # обновляет картинку
     pygame.display.update()
