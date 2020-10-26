@@ -20,6 +20,14 @@ green = (0, 255, 0)
 white = (255, 255, 255)
 
 
+def click_on_screen():
+    x_mouse, y_mouse = pygame.mouse.get_pos()
+    print(f'x = {x_mouse} y = {y_mouse}')
+    column = min((columns - 1), x_mouse // (margin + width))
+    row = min((rows - 1), y_mouse // (margin + height))
+    print(f'row = {row} column = {column}')
+    mas[row][column] ^= 1
+
 
 mas = [[0] * columns for i in range(rows)]
 
@@ -32,16 +40,7 @@ while True:
             pygame.quit()
             sys.exit(0)
         elif event.type == pygame.MOUSEBUTTONDOWN:
-            x_mouse, y_mouse = pygame.mouse.get_pos()
-            print(f'x = {x_mouse} y = {y_mouse}')
-            column = min((columns - 1), x_mouse // (margin + width))
-            # if column > columns:
-                # column -= 1
-            row = min((rows - 1), y_mouse // (margin + height))
-            # if row > rows:
-                # row -= 1
-            print(f'row = {row} column = {column}')
-            mas[row][column] ^= 1
+            click_on_screen()
     # Отрисовка экрана
     # рисует наши квадратики
     for row in range(rows):
