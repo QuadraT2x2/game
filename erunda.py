@@ -9,8 +9,10 @@ screenx = (width * columns) + (margin * (columns + 1))
 screeny = (height * rows) + margin * (rows + 1)
 screen = pygame.display.set_mode((screenx, screeny))
 pygame.display.set_caption('Erunda')
-background = pygame.image.load("bricks.jpg")
+bricks = pygame.image.load("bricks.jpg")
+background = pygame.transform.scale(bricks, (screenx, screeny))
 img = pygame.image.load("ayaya.jpg")
+image = pygame.transform.scale(img, (width, height))
 pygame.display.set_icon(img)
 black = (0, 0, 0)
 red = (255, 0, 0)
@@ -33,7 +35,12 @@ while True:
             x_mouse, y_mouse = pygame.mouse.get_pos()
             print(f'x = {x_mouse} y = {y_mouse}')
             column = x_mouse // (margin + width)
+            # if column > columns:
+                # column -= 1
             row = y_mouse // (margin + height)
+            # if row > rows:
+                # row -= 1
+            print(f'row = {row} column = {column}')
             mas[row][column] ^= 1
     # Отрисовка экрана
     # рисует наши квадратики
@@ -42,7 +49,6 @@ while True:
             x = column * width + (column + 1) * margin
             y = row * height + (row + 1) * margin
             if mas[row][column] == 1:
-                image = pygame.transform.scale(img, (width, height))
                 screen.blit(image, (x, y))
             else:
                 pygame.draw.rect(screen, white, (x, y, width, height))
