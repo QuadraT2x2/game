@@ -45,13 +45,20 @@ while True:
     # рисует наши квадратики
     for row in range(rows):
         for column in range(columns):
+            # передавали в функцию, рисующую в ряде или колонке текущий ряд, 
+            # текущий столб, 
+
             x = column * width + (column + 1) * margin
             y = row * height + (row + 1) * margin
+            # тут только вызываем draw_image_in_square
             if mas[row][column] == 1:
                 screen.blit(image, (x, y))
             else:
+                # вместо белого прямоугольника рисуем белую картинку
                 pygame.draw.rect(screen, white, (x, y, width, height))
 
 
     # обновляет картинку
     pygame.display.update()
+
+def draw_image_in_square(square_row, square_column, image):
