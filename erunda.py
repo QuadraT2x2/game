@@ -2,18 +2,14 @@ import pygame
 import sys
 
 from graphics_utils import draw_image_in_square
-from screen_config import margin, width, height, columns, rows, screenx, screeny, screen
+from images import kitten, dog, chiken, dragon, tiger, ayaya, background, white_square
+from screen_config import margin, width, height, columns, rows, screen
 
 pygame.init()
 
-white_square = pygame.image.load("square_white.png")
-white_square = pygame.transform.scale(white_square, (width, height))
-bricks = pygame.image.load("bricks.jpg")
-background = pygame.transform.scale(bricks, (screenx, screeny))
-img = pygame.image.load("ayaya.jpg")
-ayaya_image = pygame.transform.scale(img, (width, height))
+#my_list = [kitten, dog, chiken, dragon, tiger, ayaya]
 
-pygame.display.set_icon(img)
+pygame.display.set_icon(ayaya)
 pygame.display.set_caption('Erunda')
 
 black = (0, 0, 0)
@@ -45,13 +41,19 @@ while True:
             click_on_screen()
     # Отрисовка экрана
     # рисует наши квадратики
-    for row in range(rows):
+    draw_image_in_square(0, 0, kitten)
+    draw_image_in_square(0, 1, dog)
+    draw_image_in_square(0, 2, chiken)
+    draw_image_in_square(0, 3, dragon)
+    draw_image_in_square(0, 4, tiger)
+    draw_image_in_square(0, 5, ayaya)
+    for row in range(1, rows):
         for column in range(columns):
             # передавали в функцию, рисующую в ряде или колонке текущий ряд, 
             # текущий столб,
             # тут только вызываем draw_image_in_square
             if mas[row][column] == 1:
-                draw_image_in_square(row, column, ayaya_image)
+                draw_image_in_square(row, column, ayaya)
             else:
                 # вместо белого прямоугольника рисуем белую картинку
                 draw_image_in_square(row, column, white_square)
