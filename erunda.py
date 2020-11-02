@@ -1,15 +1,10 @@
 import pygame
 import sys
 
-from screen_config import margin, width, height, columns, rows
+from graphics_utils import draw_image_in_square
+from screen_config import margin, width, height, columns, rows, screenx, screeny, screen
 
 pygame.init()
-
-
-screenx = (width * columns) + (margin * (columns + 1))
-screeny = (height * rows) + margin * (rows + 1)
-
-screen = pygame.display.set_mode((screenx, screeny))
 
 white_square = pygame.image.load("square_white.png")
 white_square = pygame.transform.scale(white_square, (width, height))
@@ -37,13 +32,6 @@ def click_on_screen():
 
 
 mas = [[0] * columns for i in range(rows)]
-
-
-def draw_image_in_square(square_row, square_column, image):
-    square_x = margin + (margin + width) * square_column
-    square_y = margin + (margin + height) * square_row
-    screen.blit(image, (square_x, square_y))
-
 
 while True:
     # добавить строчку, которая будет рисовать картинку.
