@@ -1,6 +1,7 @@
 from characters import Character, Hero
 from monster_creator import Property, Monster_creater
 from inventory import Health_potion
+from images import kitten, dog, chiken, dragon, tiger
 import numpy as np
 
 
@@ -13,11 +14,11 @@ properties = [
 ]
 
 characters = [
-    Character('cat', 50, 15),
-    Character('dog', 70, 10),
-    Character('chicken', 60, 20),
-    Character('dragon', 150, 40),
-    Character('tiger', 100, 30)
+    Character('cat', 50, 15, kitten),
+    Character('dog', 70, 10, dog),
+    Character('chicken', 60, 20, chiken),
+    Character('dragon', 150, 40, dragon),
+    Character('tiger', 100, 30, tiger)
 ]
 '''
 heroes = [
@@ -26,9 +27,9 @@ heroes = [
     Hero('Furion', 350, 25, 'intelligence', 2, 4, 7)
 ]
 '''
-thief = Hero('Alexa', 400, 35, 'agility', 3, 5, 2)
-defender = Hero('Maximus', 650, 30, 'strength', 6, 3, 1)
-prophet = Hero('Furion', 350, 25, 'intelligence', 2, 4, 7)
+thief = Hero('Alexa', 400, 35, None, 'agility', 3, 5, 2)
+defender = Hero('Maximus', 650, 30, None, 'strength', 6, 3, 1)
+prophet = Hero('Furion', 350, 25, None, 'intelligence', 2, 4, 7)
 
 create_5_monsters_no_prop = (np.random.choice(characters, 5).tolist())
 print(create_5_monsters_no_prop, end='\n'+'*' * 30+'\n')

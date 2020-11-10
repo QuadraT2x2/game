@@ -1,5 +1,6 @@
 import random
 from inventory import Inventory, Health_potion
+from images import unknown
 
 
 def calculate_agi_diff_bonus(self, other, max_bonus, agi_to_bonus_coefficient):
@@ -24,10 +25,12 @@ def attack_first(self, other):
 
 
 class Character():
-    def __init__(self, name, max_health, attack_damage):
+    def __init__(self, name, max_health, attack_damage, image=None):
         self.name = name
         self.max_health = max_health
         self.__attack_damage = attack_damage
+        if image is None:
+            self.image = unknown
         self.__current_health = max_health
         self.is_alive = True
 
@@ -78,7 +81,7 @@ class Character():
 
 
 class Hero(Character):
-    def __init__(self, name, max_health, attack_damage, main_att, strength, agility, intelligence):
+    def __init__(self, name, max_health, attack_damage, image, main_att, strength, agility, intelligence):
         if main_att not in ['strength', 'agility', 'intelligence']:
             raise ValueError(
                 f"Main attribute must be one of 'strength', 'agility', 'intelligence'. Main_att parameter was *'{main_att}'* ")
@@ -88,7 +91,7 @@ class Hero(Character):
         self.intelligence = intelligence
         self.inventory = Inventory()
         hp_bonus = 20 * strength
-        super().__init__(name, max_health + hp_bonus, attack_damage)
+        super().__init__(name, max_health + hp_bonus, attack_damage, image)
 
     def try_to_drink_health_potion(self):
         for x in self.inventory.items:

@@ -2,7 +2,7 @@ import pygame
 import sys
 
 from graphics_utils import draw_image_in_square
-from images import kitten, dog, chiken, dragon, tiger, ayaya, background, white_square
+from images import kitten, dog, chiken, dragon, tiger, ayaya, unknown, background, white_square
 from screen_config import margin, width, height, columns, rows, screen, screenx
 
 pygame.init()
@@ -49,13 +49,13 @@ while True:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             click_on_screen()
     # Отрисовка экрана
-    # рисует наши квадратики
+    # рисует наши квадратики и картинки
     draw_image_in_square(0, 0, kitten)
     draw_image_in_square(0, 1, dog)
     draw_image_in_square(0, 2, chiken)
     draw_image_in_square(0, 3, dragon)
     draw_image_in_square(0, 4, tiger)
-    draw_image_in_square(0, 5, ayaya)
+    draw_image_in_square(0, 5, unknown)
     for row in range(1, rows):
         for column in range(columns):
             # передавали в функцию, рисующую в ряде или колонке текущий ряд, 

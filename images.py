@@ -24,3 +24,6 @@ background = pygame.transform.scale(background, (screenx, screeny))
 
 ayaya = pygame.image.load("assets/ayaya.jpg")
 ayaya = pygame.transform.scale(ayaya, (width, height))
+
+unknown = pygame.image.load("assets/unknown.jpg")
+unknown = pygame.transform.scale(unknown, (width, height))
