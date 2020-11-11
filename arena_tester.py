@@ -27,9 +27,9 @@ heroes = [
     Hero('Furion', 350, 25, 'intelligence', 2, 4, 7)
 ]
 '''
-thief = Hero('Alexa', 400, 35, None, 'agility', 3, 5, 2)
-defender = Hero('Maximus', 650, 30, None, 'strength', 6, 3, 1)
-prophet = Hero('Furion', 350, 25, None, 'intelligence', 2, 4, 7)
+thief = Hero('Alexa', 400, 35, 'agility', 3, 5, 2)
+defender = Hero('Maximus', 650, 30, 'strength', 6, 3, 1)
+prophet = Hero('Furion', 350, 25, 'intelligence', 2, 4, 7)
 
 create_5_monsters_no_prop = (np.random.choice(characters, 5).tolist())
 print(create_5_monsters_no_prop, end='\n'+'*' * 30+'\n')
