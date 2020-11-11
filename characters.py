@@ -81,7 +81,7 @@ class Character():
 
 
 class Hero(Character):
-    def __init__(self, name, max_health, attack_damage, image, main_att, strength, agility, intelligence):
+    def __init__(self, name, max_health, attack_damage, main_att, strength, agility, intelligence, image=None):
         if main_att not in ['strength', 'agility', 'intelligence']:
             raise ValueError(
                 f"Main attribute must be one of 'strength', 'agility', 'intelligence'. Main_att parameter was *'{main_att}'* ")
