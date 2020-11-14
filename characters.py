@@ -31,6 +31,8 @@ class Character():
         self.__attack_damage = attack_damage
         if image is None:
             self.image = unknown
+        else:
+            self.image = image
         self.__current_health = max_health
         self.is_alive = True
 
