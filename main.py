@@ -2,12 +2,12 @@ import pygame
 import sys
 
 from graphics_utils import draw_image_in_square
-from images import kitten, dog, chiken, dragon, tiger, ayaya, unknown, background, white_square
+from images import kitten, pooch, cock, viper, tigress, ayaya, unknown, background, white_square
 from screen_config import margin, width, height, columns, rows, screen, screenx
+from characters import Character
+from arena_tester import characters
 
 pygame.init()
-
-#my_list = [kitten, dog, chiken, dragon, tiger, ayaya]
 
 pygame.display.set_icon(ayaya)
 pygame.display.set_caption('Erunda')
@@ -29,10 +29,10 @@ def click_on_screen():
         column = min((columns - 1), x_mouse // (margin + width))
         row = min((rows - 1), y_mouse // (margin + height))
         print(f'row = {row} column = {column}')
-        mas[row][column] ^= 1
+        mas[row][column] = characters[0]
 
 
-mas = [[0] * columns for i in range(rows)]
+mas = [[None] * columns for i in range(rows)]
 
 while True:
     # добавить строчку, которая будет рисовать картинку.
@@ -50,22 +50,15 @@ while True:
             click_on_screen()
     # Отрисовка экрана
     # рисует наши квадратики и картинки
-    draw_image_in_square(0, 0, kitten)
-    draw_image_in_square(0, 1, dog)
-    draw_image_in_square(0, 2, chiken)
-    draw_image_in_square(0, 3, dragon)
-    draw_image_in_square(0, 4, tiger)
-    draw_image_in_square(0, 5, unknown)
-    for row in range(1, rows):
+    for row in range(rows):
         for column in range(columns):
             # передавали в функцию, рисующую в ряде или колонке текущий ряд, 
             # текущий столб,
             # тут только вызываем draw_image_in_square
-            if mas[row][column] == 1:
-                draw_image_in_square(row, column, ayaya)
-            else:
-                # вместо белого прямоугольника рисуем белую картинку
+            if mas[row][column] is None:
                 draw_image_in_square(row, column, white_square)
+            if type(mas[row][column]) == Character:
+                draw_image_in_square(row, column, characters[0].image)
 
 
     # обновляет картинку

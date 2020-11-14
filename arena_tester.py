@@ -1,7 +1,7 @@
 from characters import Character, Hero
 from monster_creator import Property, Monster_creater
 from inventory import Health_potion
-from images import kitten, dog, chiken, dragon, tiger
+from images import kitten, pooch, cock, viper, tigress
 import numpy as np
 
 
@@ -15,10 +15,10 @@ properties = [
 
 characters = [
     Character('cat', 50, 15, kitten),
-    Character('dog', 70, 10, dog),
-    Character('chicken', 60, 20, chiken),
-    Character('dragon', 150, 40, dragon),
-    Character('tiger', 100, 30, tiger)
+    Character('dog', 70, 10, pooch),
+    Character('chicken', 60, 20, cock),
+    Character('dragon', 150, 40, viper),
+    Character('tiger', 100, 30, tigress)
 ]
 '''
 heroes = [

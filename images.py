@@ -4,17 +4,17 @@ from screen_config import width, height, screenx, screeny
 kitten = pygame.image.load("assets/kitten.jpg")
 kitten = pygame.transform.scale(kitten, (width, height))
 
-dog = pygame.image.load("assets/dog.jpg")
-dog = pygame.transform.scale(dog, (width, height))
+pooch = pygame.image.load("assets/dog.jpg")
+pooch = pygame.transform.scale(pooch, (width, height))
 
-chiken = pygame.image.load("assets/chiken.jpg")
-chiken = pygame.transform.scale(chiken, (width, height))
+cock = pygame.image.load("assets/chiken.jpg")
+cock = pygame.transform.scale(cock, (width, height))
 
-dragon = pygame.image.load("assets/dragon.jpg")
-dragon = pygame.transform.scale(dragon, (width, height))
+viper = pygame.image.load("assets/dragon.jpg")
+viper = pygame.transform.scale(viper, (width, height))
 
-tiger = pygame.image.load("assets/tiger.jpg")
-tiger = pygame.transform.scale(tiger, (width, height))
+tigress = pygame.image.load("assets/tiger.jpg")
+tigress = pygame.transform.scale(tigress, (width, height))
 
 white_square = pygame.image.load("assets/square_white.png")
 white_square = pygame.transform.scale(white_square, (width, height))
