@@ -1,11 +1,13 @@
 import pygame
 import sys
+import random
+import numpy as np
 
 from graphics_utils import draw_image_in_square
 from images import kitten, pooch, cock, viper, tigress, ayaya, unknown, background, white_square
 from screen_config import margin, width, height, columns, rows, screen, screenx
 from characters import Character
-from arena_tester import characters
+from arena_tester import characters, create_5_monsters_no_prop
 
 pygame.init()
 
@@ -30,6 +32,10 @@ def click_on_screen():
         row = min((rows - 1), y_mouse // (margin + height))
         print(f'row = {row} column = {column}')
         mas[row][column] = characters[0]
+
+
+my_list = create_5_monsters_no_prop
+drawing = True
 
 
 mas = [[None] * columns for i in range(rows)]
@@ -59,6 +65,16 @@ while True:
                 draw_image_in_square(row, column, white_square)
             if type(mas[row][column]) == Character:
                 draw_image_in_square(row, column, characters[0].image)
+    while drawing is True:
+        for i in range(5):
+            print(my_list[i])
+            a_row = random.randint(0, (rows - 1))
+            a_column = random.randint(0, (columns - 1))
+            print(a_row, a_column)
+            my_choice = my_list[i]
+            mas[a_row][a_column] = my_choice
+            draw_image_in_square(a_row, a_column, my_choice.image)
+        drawing = False
 
 
     # обновляет картинку
