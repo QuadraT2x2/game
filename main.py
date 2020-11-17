@@ -65,6 +65,6 @@ while True:
             if mas_item is None:
                 draw_image_in_square(row, column, white_square)
             if isinstance(mas_item, Character) is True:
-                draw_image_in_square(row, column, characters[0].image)
+                draw_image_in_square(row, column, mas_item.image)
     # обновляет картинку
     pygame.display.update()
