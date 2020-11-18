@@ -1,7 +1,18 @@
-from screen_config import margin, width, height, screen
+import pygame
+from screen_config import margin, width, height, screen, screenx, screeny, screenx_new, status_bar
 
 
 def draw_image_in_square(square_row, square_column, image):
     square_x = margin + (margin + width) * square_column
     square_y = margin + (margin + height) * square_row
     screen.blit(image, (square_x, square_y))
+
+
+def draw_portrait(image, x=screenx + ((status_bar - 220) // 2), y=margin):
+    image = pygame.transform.scale(image, (220, 220))
+    screen.blit(image, (x, y))
+
+
+def draw_arrows(x, y, image):
+    image = pygame.transform.scale(image, (40, 40))
+    screen.blit(image, (x, y))

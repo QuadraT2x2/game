@@ -27,3 +27,17 @@ ayaya = pygame.transform.scale(ayaya, (width, height))
 
 unknown = pygame.image.load("assets/unknown.jpg")
 unknown = pygame.transform.scale(unknown, (width, height))
+
+up = pygame.image.load("assets/up.jpg")
+
+down = pygame.image.load("assets/down.jpg")
+
+left = pygame.image.load("assets/left.jpg")
+
+right = pygame.image.load("assets/right.jpg")
+
+assassin = pygame.image.load("assets/assasin.jpg")
+
+warrior = pygame.image.load("assets/warrior.jpg")
+
+prophet = pygame.image.load("assets/prophet.jpg")

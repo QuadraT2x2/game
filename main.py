@@ -1,9 +1,11 @@
 import pygame
 import sys
+import random
 
-from graphics_utils import draw_image_in_square
-from images import kitten, pooch, cock, viper, tigress, ayaya, unknown, background, white_square
-from screen_config import margin, width, height, columns, rows, screen, screenx
+from graphics_utils import draw_image_in_square, draw_portrait, draw_arrows
+from images import kitten, pooch, cock, viper, tigress, ayaya, unknown, background, white_square, up, down, left, right,\
+    assassin, warrior, prophet
+from screen_config import margin, width, height, columns, rows, screen, screenx, screeny
 from characters import Character
 from arena_tester import characters, create_5_monsters_no_prop
 
@@ -29,7 +31,7 @@ def click_on_screen():
         column = min((columns - 1), x_mouse // (margin + width))
         row = min((rows - 1), y_mouse // (margin + height))
         print(f'row = {row} column = {column}')
-        mas[row][column] = characters[0]
+        mas[row][column] = None
 
 
 my_list = create_5_monsters_no_prop
@@ -46,7 +48,13 @@ while True:
     # добавить на новую зону в экране текстовое поле с текстом "hello, text!"
     font = pygame.font.Font(None, 75)  # це шрифт
     text = font.render("Hello, text!", True, purple)
-    screen.blit(text, [screenx + margin, margin])
+    screen.blit(text, [screenx + margin, 220 + (margin * 2)])
+    draw_portrait(assassin)  # всобачить нужную картинку
+    draw_arrows(screenx + ((360 - 40) // 2), screeny - 250, white_square)
+    draw_arrows(screenx + ((360 - 40) // 2), screeny - 315, up)
+    draw_arrows(screenx + ((360 - 40) // 2), screeny - 185, down)
+    draw_arrows(screenx + ((360 - 40) // 2 - 65), screeny - 250, left)
+    draw_arrows(screenx + ((360 - 40) // 2 + 65), screeny - 250, right)
     # обработка событий
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
