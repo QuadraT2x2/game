@@ -3,8 +3,8 @@ import sys
 import random
 
 from graphics_utils import draw_image_in_square, draw_portrait, draw_arrows
-from images import kitten, pooch, cock, viper, tigress, ayaya, unknown, background, white_square, up, down, left, right,\
-    assassin, warrior, prophet
+from images import kitten, pooch, cock, viper, tigress, ayaya, unknown, background, white_square, up, down, left,\
+    right, assasin, warrior, prophet
 from screen_config import margin, width, height, columns, rows, screen, screenx, screeny
 from characters import Character
 from arena_tester import characters, create_5_monsters_no_prop
@@ -49,7 +49,7 @@ while True:
     font = pygame.font.Font(None, 75)  # це шрифт
     text = font.render("Hello, text!", True, purple)
     screen.blit(text, [screenx + margin, 220 + (margin * 2)])
-    draw_portrait(assassin)  # всобачить нужную картинку
+    draw_portrait(assasin)  # всобачить нужную картинку
     draw_arrows(screenx + ((360 - 40) // 2), screeny - 250, white_square)
     draw_arrows(screenx + ((360 - 40) // 2), screeny - 315, up)
     draw_arrows(screenx + ((360 - 40) // 2), screeny - 185, down)

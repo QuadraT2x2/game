@@ -1,7 +1,7 @@
 from characters import Character, Hero
 from monster_creator import Property, Monster_creater
 from inventory import Health_potion
-from images import kitten, pooch, cock, viper, tigress, assassin, warrior, prophet
+from images import kitten, pooch, cock, viper, tigress, assasin, warrior, prophet
 import numpy as np
 
 
@@ -27,7 +27,7 @@ heroes = [
     Hero('Furion', 350, 25, 'intelligence', 2, 4, 7, prophet)
 ]
 '''
-thief = Hero('Alexa', 400, 35, 'agility', 3, 5, 2, assassin)
+thief = Hero('Alexa', 400, 35, 'agility', 3, 5, 2, assasin)
 defender = Hero('Maximus', 650, 30, 'strength', 6, 3, 1, warrior)
 prophet = Hero('Furion', 350, 25, 'intelligence', 2, 4, 7, prophet)
 

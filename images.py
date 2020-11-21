@@ -36,7 +36,7 @@ left = pygame.image.load("assets/left.jpg")
 
 right = pygame.image.load("assets/right.jpg")
 
-assassin = pygame.image.load("assets/assasin.jpg")
+assasin = pygame.image.load("assets/assasin.jpg")
 
 warrior = pygame.image.load("assets/warrior.jpg")
 
