@@ -5,7 +5,7 @@ import random
 from graphics_utils import draw_image_in_square, draw_portrait, draw_arrows
 from images import kitten, pooch, cock, viper, tigress, ayaya, unknown, background, white_square, up, down, left,\
     right, assasin, warrior, prophet
-from screen_config import margin, width, height, columns, rows, screen, screenx, screeny
+from screen_config import margin, width, height, columns, rows, screen, screenx, screeny, status_bar
 from characters import Character
 from arena_tester import characters, create_5_monsters_no_prop
 
@@ -22,6 +22,10 @@ blue = (0, 0, 255)
 aqua = (0, 255, 255)
 purple = (255, 0, 255)
 yellow = (255, 255, 0)
+color_list = [black, white, red, green, blue, aqua, purple, yellow]
+color_random = random.randint(0, len(color_list) - 1)
+my_color_choice = color_list[color_random]
+active_unit = None
 
 
 def click_on_screen():
@@ -31,7 +35,25 @@ def click_on_screen():
         column = min((columns - 1), x_mouse // (margin + width))
         row = min((rows - 1), y_mouse // (margin + height))
         print(f'row = {row} column = {column}')
-        mas[row][column] = None
+
+
+def drawing_gui():
+    font = pygame.font.Font(None, 40)  # це шрифт и размер
+    if active_unit is None:
+        my_text = "Unit is not selected"
+        pygame.draw.rect(screen, my_color_choice, [screenx + ((status_bar - 220) // 2), margin, 220, 220], 0)
+    else:
+        my_text = repr(active_unit)  # передать текст
+        draw_portrait(active_unit.image)
+    text = font.render(my_text, True, purple)
+    screen.blit(text, [screenx + margin, 220 + (margin * 2)])
+    x = screenx + ((360 - 40) // 2)
+    y = screeny - 250
+    draw_arrows(x, y, white_square)
+    draw_arrows(x, y - 65, up)
+    draw_arrows(x, y + 65, down)
+    draw_arrows(x - 65, y, left)
+    draw_arrows(x + 65, y, right)
 
 
 my_list = create_5_monsters_no_prop
@@ -46,15 +68,7 @@ while True:
     # добавить строчку, которая будет рисовать картинку.
     screen.blit(background, (0, 0))
     # добавить на новую зону в экране текстовое поле с текстом "hello, text!"
-    font = pygame.font.Font(None, 75)  # це шрифт
-    text = font.render("Hello, text!", True, purple)
-    screen.blit(text, [screenx + margin, 220 + (margin * 2)])
-    draw_portrait(assasin)  # всобачить нужную картинку
-    draw_arrows(screenx + ((360 - 40) // 2), screeny - 250, white_square)
-    draw_arrows(screenx + ((360 - 40) // 2), screeny - 315, up)
-    draw_arrows(screenx + ((360 - 40) // 2), screeny - 185, down)
-    draw_arrows(screenx + ((360 - 40) // 2 - 65), screeny - 250, left)
-    draw_arrows(screenx + ((360 - 40) // 2 + 65), screeny - 250, right)
+    drawing_gui()
     # обработка событий
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
