@@ -28,16 +28,23 @@ my_color_choice = color_list[color_random]
 active_unit = None
 
 
-def click_on_screen():
+def click_on_screen(active_unit):
     x_mouse, y_mouse = pygame.mouse.get_pos()
     print(f'x = {x_mouse} y = {y_mouse}')
     if x_mouse <= screenx:
         column = min((columns - 1), x_mouse // (margin + width))
         row = min((rows - 1), y_mouse // (margin + height))
         print(f'row = {row} column = {column}')
+    if isinstance(mas[row][column], Character) is True:
+        active_unit = mas[row][column]
+        print('1488')
+    else:
+        active_unit = None
+        print('322')
+    drawing_gui(active_unit)
 
 
-def drawing_gui():
+def drawing_gui(active_unit):
     font = pygame.font.Font(None, 40)  # це шрифт и размер
     if active_unit is None:
         my_text = "Unit is not selected"
@@ -68,14 +75,14 @@ while True:
     # добавить строчку, которая будет рисовать картинку.
     screen.blit(background, (0, 0))
     # добавить на новую зону в экране текстовое поле с текстом "hello, text!"
-    drawing_gui()
+    drawing_gui(active_unit)
     # обработка событий
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit(0)
         elif event.type == pygame.MOUSEBUTTONDOWN:
-            click_on_screen()
+            click_on_screen(active_unit)
     # Отрисовка экрана
     # рисует наши квадратики и картинки
     for row in range(rows):
