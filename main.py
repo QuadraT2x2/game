@@ -5,7 +5,7 @@ import random
 from graphics_utils import draw_image_in_square, draw_portrait, draw_arrows
 from images import kitten, pooch, cock, viper, tigress, ayaya, unknown, background, white_square, up, down, left,\
     right, assasin, warrior, prophet
-from screen_config import margin, width, height, columns, rows, screen, screenx, screeny, status_bar
+from screen_config import margin, width, height, columns, rows, screen, screen_x, screen_y, status_bar
 from characters import Character
 from arena_tester import characters, create_5_monsters_no_prop
 
@@ -32,7 +32,7 @@ def click_on_screen():
     global active_unit
     x_mouse, y_mouse = pygame.mouse.get_pos()
     print(f'x = {x_mouse} y = {y_mouse}')
-    if x_mouse <= screenx:
+    if x_mouse <= screen_x:
         column = min((columns - 1), x_mouse // (margin + width))
         row = min((rows - 1), y_mouse // (margin + height))
         print(f'row = {row} column = {column}')
@@ -49,14 +49,14 @@ def drawing_gui():
     font = pygame.font.Font(None, 40)  # це шрифт и размер
     if active_unit is None:
         my_text = "Unit is not selected"
-        pygame.draw.rect(screen, my_color_choice, [screenx + ((status_bar - 220) // 2), margin, 220, 220], 0)
+        pygame.draw.rect(screen, my_color_choice, [screen_x + ((status_bar - 220) // 2), margin, 220, 220], 0)
     else:
         my_text = repr(active_unit)  # передать текст
         draw_portrait(active_unit.image)
     text = font.render(my_text, True, purple)
-    screen.blit(text, [screenx + margin, 220 + (margin * 2)])
-    x = screenx + ((360 - 40) // 2)
-    y = screeny - 250
+    screen.blit(text, [screen_x + margin, 220 + (margin * 2)])
+    x = screen_x + ((360 - 40) // 2)
+    y = screen_y - 250
     draw_arrows(x, y, white_square)
     draw_arrows(x, y - 65, up)
     draw_arrows(x, y + 65, down)

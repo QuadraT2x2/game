@@ -1,5 +1,5 @@
 import pygame
-from screen_config import width, height, screenx, screeny
+from screen_config import width, height, screen_x, screen_y
 
 kitten = pygame.image.load("assets/kitten.jpg")
 kitten = pygame.transform.scale(kitten, (width, height))
@@ -20,7 +20,7 @@ white_square = pygame.image.load("assets/square_white.png")
 white_square = pygame.transform.scale(white_square, (width, height))
 
 background = pygame.image.load("assets/bricks.jpg")
-background = pygame.transform.scale(background, (screenx, screeny))
+background = pygame.transform.scale(background, (screen_x, screen_y))
 
 ayaya = pygame.image.load("assets/ayaya.jpg")
 ayaya = pygame.transform.scale(ayaya, (width, height))
