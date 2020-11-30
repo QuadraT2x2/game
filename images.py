@@ -28,6 +28,8 @@ ayaya = pygame.transform.scale(ayaya, (width, height))
 unknown = pygame.image.load("assets/unknown.jpg")
 unknown = pygame.transform.scale(unknown, (width, height))
 
+stat_bar = pygame.image.load("assets/status_bar.png")
+
 up = pygame.image.load("assets/up.jpg")
 
 down = pygame.image.load("assets/down.jpg")

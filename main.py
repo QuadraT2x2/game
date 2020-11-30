@@ -4,7 +4,7 @@ import random
 
 from graphics_utils import draw_image_in_square, draw_portrait, draw_arrows
 from images import kitten, pooch, cock, viper, tigress, ayaya, unknown, background, white_square, up, down, left,\
-    right, assasin, warrior, prophet
+    right, assasin, warrior, prophet, stat_bar
 from screen_config import margin, width, height, columns, rows, screen, screen_x, screen_y, status_bar
 from characters import Character
 from arena_tester import characters, create_5_monsters_no_prop
@@ -49,12 +49,12 @@ def drawing_gui():
     font = pygame.font.Font(None, 40)  # це шрифт и размер
     if active_unit is None:
         my_text = "Unit is not selected"
-        pygame.draw.rect(screen, my_color_choice, [screen_x + ((status_bar - 220) // 2), margin, 220, 220], 0)
+        pygame.draw.rect(screen, my_color_choice, [screen_x + ((status_bar - 220) // 2), margin * 2, 220, 220], 0)
     else:
         my_text = repr(active_unit)  # передать текст
         draw_portrait(active_unit.image)
     text = font.render(my_text, True, purple)
-    screen.blit(text, [screen_x + margin, 220 + (margin * 2)])
+    screen.blit(text, [screen_x + (margin * 2), 220 + (margin * 3)])
     x = screen_x + ((360 - 40) // 2)
     y = screen_y - 250
     draw_arrows(x, y, white_square)
@@ -75,6 +75,7 @@ mas[1][0] = my_list[4]
 while True:
     # добавить строчку, которая будет рисовать картинку.
     screen.blit(background, (0, 0))
+    screen.blit(stat_bar, (screen_x, 0))
     # добавить на новую зону в экране текстовое поле с текстом "hello, text!"
     drawing_gui()
     # обработка событий
