@@ -25,11 +25,14 @@ yellow = (255, 255, 0)
 color_list = [black, white, red, green, blue, aqua, purple, yellow]
 color_random = random.randint(0, len(color_list) - 1)
 my_color_choice = color_list[color_random]
+
 active_unit = None
+active_row = None
+active_column = None
 
 
 def click_on_screen():
-    global active_unit
+    global active_unit, active_row, active_column
     x_mouse, y_mouse = pygame.mouse.get_pos()
     print(f'x = {x_mouse} y = {y_mouse}')
     if x_mouse <= screen_x:
@@ -38,11 +41,92 @@ def click_on_screen():
         print(f'row = {row} column = {column}')
         if isinstance(mas[row][column], Character) is True:
             active_unit = mas[row][column]
+            active_row = row
+            active_column = column
             print('1488')
         else:
             active_unit = None
+            active_row = None
+            active_column = None
             print('322')
     drawing_gui()
+
+
+def motion_up():
+    # active_row = 0
+    # active_column = 0
+    print('up')
+    global active_unit, mas, active_column, active_row
+    if active_column is not None:
+        if (active_row - 1) < 0:
+            print("движение не возможно")
+        else:
+            print(active_row, active_column)
+            tmp = mas[active_row - 1][active_column]
+            if isinstance(tmp, Character) is True:
+                print("ячейка занята", tmp)
+            else:
+                mas[active_row - 1][active_column], mas[active_row][active_column] = mas[active_row][active_column], mas[active_row - 1][active_column]
+                mas[active_row - 1][active_column] = active_unit
+                active_row -= 1
+
+
+def motion_down():
+    print('down')
+    global active_unit, mas, event
+    if (row + 1) < 0:
+        print("движение не возможно")
+    else:
+        if isinstance(mas[row + 1][column], Character) is True:
+            print("ячейка занята")
+        else:
+            mas[row + 1][column], mas[row][column] = mas[row][column], mas[row + 1][column]
+            mas[row + 1][column] = active_unit
+
+
+def motion_left():
+    print('left')
+    global active_unit, mas, event
+    if (column - 1) < 0:
+        print("движение не возможно")
+    else:
+        if isinstance(mas[row][column - 1], Character) is True:
+            print("ячейка занята")
+        else:
+            mas[row][column - 1], mas[row][column] = mas[row][column], mas[row][column - 1]
+            mas[row][column - 1] = active_unit
+
+
+def motion_right():
+    print('right')
+    global active_unit, mas, event
+    if (column + 1) < 0:
+        print("движение не возможно")
+    else:
+        if isinstance(mas[row][column + 1], Character) is True:
+            print("ячейка занята")
+        else:
+            mas[row][column + 1], mas[row][column] = mas[row][column], mas[row][column + 1]
+            mas[row][column + 1] = active_unit
+
+
+def motion(event):
+    # print(f'paehali event.type = {event.type}')
+    # я получаю события нажатия кнопки,
+    if event.type == pygame.KEYDOWN:
+        # уточняю что кнопка стрелка вверх
+        if event.key == pygame.K_UP:
+            # если я нажимаю стрелку вверх то вызывается движение вверх
+            motion_up()
+
+    if event.type == pygame.K_UP:
+        motion_up()
+    elif event.type == pygame.K_DOWN:
+        motion_down()
+    elif event.type == pygame.K_LEFT:
+        motion_left()
+    elif event.type == pygame.K_RIGHT:
+        motion_right()
 
 
 def drawing_gui():
@@ -85,6 +169,7 @@ while True:
             sys.exit(0)
         elif event.type == pygame.MOUSEBUTTONDOWN:
             click_on_screen()
+        motion(event)
     # Отрисовка экрана
     # рисует наши квадратики и картинки
     for row in range(rows):
