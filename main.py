@@ -73,41 +73,45 @@ def motion_up():
 
 def motion_down():
     print('down')
-    global active_unit, mas, event
-    if (row + 1) < 0:
-        print("движение не возможно")
-    else:
-        if isinstance(mas[row + 1][column], Character) is True:
-            print("ячейка занята")
+    global active_unit, mas, active_column, active_row
+    if active_column is not None:
+        if (active_row + 1) > 5:
+            print("движение не возможно")
         else:
-            mas[row + 1][column], mas[row][column] = mas[row][column], mas[row + 1][column]
-            mas[row + 1][column] = active_unit
+            if isinstance(mas[active_row + 1][active_column], Character) is True:
+                print("ячейка занята")
+            else:
+                mas[active_row + 1][active_column], mas[active_row][active_column] = mas[active_row][active_column], mas[active_row + 1][active_column]
+                mas[active_row + 1][active_column] = active_unit
+                active_row += 1
 
 
 def motion_left():
     print('left')
-    global active_unit, mas, event
-    if (column - 1) < 0:
+    global active_unit, mas, active_column, active_row
+    if (active_column - 1) < 0:
         print("движение не возможно")
     else:
-        if isinstance(mas[row][column - 1], Character) is True:
+        if isinstance(mas[active_row][active_column - 1], Character) is True:
             print("ячейка занята")
         else:
-            mas[row][column - 1], mas[row][column] = mas[row][column], mas[row][column - 1]
-            mas[row][column - 1] = active_unit
+            mas[active_row][active_column - 1], mas[active_row][active_column] = mas[active_row][active_column], mas[active_row][active_column - 1]
+            mas[active_row][active_column - 1] = active_unit
+            active_column -= 1
 
 
 def motion_right():
     print('right')
-    global active_unit, mas, event
-    if (column + 1) < 0:
+    global active_unit, mas, active_column, active_row
+    if (active_column + 1) > 5:
         print("движение не возможно")
     else:
-        if isinstance(mas[row][column + 1], Character) is True:
+        if isinstance(mas[active_row][active_column + 1], Character) is True:
             print("ячейка занята")
         else:
-            mas[row][column + 1], mas[row][column] = mas[row][column], mas[row][column + 1]
-            mas[row][column + 1] = active_unit
+            mas[active_row][active_column + 1], mas[active_row][active_column] = mas[active_row][active_column], mas[active_row][active_column + 1]
+            mas[active_row][active_column + 1] = active_unit
+            active_column += 1
 
 
 def motion(event):
@@ -118,15 +122,12 @@ def motion(event):
         if event.key == pygame.K_UP:
             # если я нажимаю стрелку вверх то вызывается движение вверх
             motion_up()
-
-    if event.type == pygame.K_UP:
-        motion_up()
-    elif event.type == pygame.K_DOWN:
-        motion_down()
-    elif event.type == pygame.K_LEFT:
-        motion_left()
-    elif event.type == pygame.K_RIGHT:
-        motion_right()
+        elif event.key == pygame.K_DOWN:
+            motion_down()
+        elif event.key == pygame.K_LEFT:
+            motion_left()
+        elif event.key == pygame.K_RIGHT:
+            motion_right()
 
 
 def drawing_gui():
