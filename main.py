@@ -75,7 +75,7 @@ def motion_down():
     print('down')
     global active_unit, mas, active_column, active_row
     if active_column is not None:
-        if (active_row + 1) > 5:
+        if (active_row + 1) > (rows - 1):
             print("движение не возможно")
         else:
             if isinstance(mas[active_row + 1][active_column], Character) is True:
@@ -103,7 +103,7 @@ def motion_left():
 def motion_right():
     print('right')
     global active_unit, mas, active_column, active_row
-    if (active_column + 1) > 5:
+    if (active_column + 1) > (columns - 1):
         print("движение не возможно")
     else:
         if isinstance(mas[active_row][active_column + 1], Character) is True:
