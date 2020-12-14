@@ -6,7 +6,7 @@ from graphics_utils import draw_image_in_square, draw_portrait, draw_arrows
 from images import kitten, pooch, cock, viper, tigress, ayaya, unknown, background, white_square, up, down, left,\
     right, assasin, warrior, prophet, stat_bar
 from screen_config import margin, width, height, columns, rows, screen, screen_x, screen_y, status_bar
-from characters import Character
+from characters import Character, Hero
 from arena_tester import characters, create_5_monsters_no_prop
 
 pygame.init()
@@ -66,7 +66,8 @@ def motion_up():
             if isinstance(tmp, Character) is True:
                 print("ячейка занята", tmp)
             else:
-                mas[active_row - 1][active_column], mas[active_row][active_column] = mas[active_row][active_column], mas[active_row - 1][active_column]
+                mas[active_row - 1][active_column], mas[active_row][active_column] = mas[active_row][active_column],\
+                                                                                     mas[active_row - 1][active_column]
                 mas[active_row - 1][active_column] = active_unit
                 active_row -= 1
 
@@ -81,7 +82,8 @@ def motion_down():
             if isinstance(mas[active_row + 1][active_column], Character) is True:
                 print("ячейка занята")
             else:
-                mas[active_row + 1][active_column], mas[active_row][active_column] = mas[active_row][active_column], mas[active_row + 1][active_column]
+                mas[active_row + 1][active_column], mas[active_row][active_column] = mas[active_row][active_column],\
+                                                                                     mas[active_row + 1][active_column]
                 mas[active_row + 1][active_column] = active_unit
                 active_row += 1
 
@@ -95,7 +97,8 @@ def motion_left():
         if isinstance(mas[active_row][active_column - 1], Character) is True:
             print("ячейка занята")
         else:
-            mas[active_row][active_column - 1], mas[active_row][active_column] = mas[active_row][active_column], mas[active_row][active_column - 1]
+            mas[active_row][active_column - 1], mas[active_row][active_column] = mas[active_row][active_column],\
+                                                                                 mas[active_row][active_column - 1]
             mas[active_row][active_column - 1] = active_unit
             active_column -= 1
 
@@ -109,7 +112,8 @@ def motion_right():
         if isinstance(mas[active_row][active_column + 1], Character) is True:
             print("ячейка занята")
         else:
-            mas[active_row][active_column + 1], mas[active_row][active_column] = mas[active_row][active_column], mas[active_row][active_column + 1]
+            mas[active_row][active_column + 1], mas[active_row][active_column] = mas[active_row][active_column],\
+                                                                                 mas[active_row][active_column + 1]
             mas[active_row][active_column + 1] = active_unit
             active_column += 1
 
@@ -135,12 +139,26 @@ def drawing_gui():
     if active_unit is None:
         my_text = "Unit is not selected"
         pygame.draw.rect(screen, my_color_choice, [screen_x + ((status_bar - 220) // 2), margin * 2, 220, 220], 0)
+        text = font.render(my_text, True, purple)
     else:
-        my_text = repr(active_unit)  # передать текст
-        draw_portrait(active_unit.image)
-    text = font.render(my_text, True, purple)
+        # хочу выводить статистику персонажа и героя. если герой дополнительный столбец с характеристиками
+        if isinstance(active_unit, Hero):
+            # изменить вывод текста
+            # тут колонка статов "имя", "атака", "хп", "макс хп"
+            # плюс статы "агила" "сила" "интелект"
+            my_text = repr(active_unit)  # передать текст
+            draw_portrait(active_unit.image)
+            text = font.render(my_text, True, purple)
+        elif isinstance(active_unit, Character):
+            # изменить вывод текста
+            # тут колонка статов "имя", "атака", "хп", "макс хп"
+            my_text = repr(active_unit)  # передать текст
+            draw_portrait(active_unit.image)
+            text = font.render(my_text, True, purple)
+
+
     screen.blit(text, [screen_x + (margin * 2), 220 + (margin * 3)])
-    x = screen_x + ((360 - 40) // 2)
+    x = screen_x + ((status_bar - 40) // 2)
     y = screen_y - 250
     draw_arrows(x, y, white_square)
     draw_arrows(x, y - 65, up)
