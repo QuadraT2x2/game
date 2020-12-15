@@ -7,7 +7,7 @@ from images import kitten, pooch, cock, viper, tigress, ayaya, unknown, backgrou
     right, assasin, warrior, prophet, stat_bar
 from screen_config import margin, width, height, columns, rows, screen, screen_x, screen_y, status_bar
 from characters import Character, Hero
-from arena_tester import characters, create_5_monsters_no_prop
+from arena_tester import characters, create_5_monsters_no_prop, thief
 
 pygame.init()
 
@@ -136,28 +136,47 @@ def motion(event):
 
 def drawing_gui():
     font = pygame.font.Font(None, 40)  # це шрифт и размер
+    stats_font = pygame.font.Font(None, 30)  # использую для столбцов
     if active_unit is None:
         my_text = "Unit is not selected"
         pygame.draw.rect(screen, my_color_choice, [screen_x + ((status_bar - 220) // 2), margin * 2, 220, 220], 0)
         text = font.render(my_text, True, purple)
+        screen.blit(text, [screen_x + (margin * 2), 220 + (margin * 3)])
     else:
         # хочу выводить статистику персонажа и героя. если герой дополнительный столбец с характеристиками
         if isinstance(active_unit, Hero):
             # изменить вывод текста
             # тут колонка статов "имя", "атака", "хп", "макс хп"
             # плюс статы "агила" "сила" "интелект"
-            my_text = repr(active_unit)  # передать текст
             draw_portrait(active_unit.image)
-            text = font.render(my_text, True, purple)
+            status_name = stats_font.render(f'''Name: {active_unit.name}''', True, purple)
+            screen.blit(status_name, [screen_x + (margin * 2), 220 + (margin * 3)])
+            status_dmg = stats_font.render(f'''Attack: {active_unit.get_attack_damage()}''', True, purple)
+            screen.blit(status_dmg, [screen_x + (margin * 2), 220 + (margin * 4)])
+            status_max_hp = stats_font.render(f'''Max HP: {active_unit.max_health}''', True, purple)
+            screen.blit(status_max_hp, [screen_x + (margin * 2), 220 + (margin * 5)])
+            status_hp = stats_font.render(f'''Current HP: {active_unit.get_current_health()}''', True, purple)
+            screen.blit(status_hp, [screen_x + (margin * 2), 220 + (margin * 6)])
+            status_str = stats_font.render(f'''Str: {active_unit.strength}''', True, red)
+            screen.blit(status_str, [screen_x + 170 + (margin * 2), 220 + (margin * 3)])
+            status_agi = stats_font.render(f'''Agi: {active_unit.agility}''', True, green)
+            screen.blit(status_agi, [screen_x + 170 + (margin * 2), 220 + (margin * 4)])
+            status_int = stats_font.render(f'''Int: {active_unit.intelligence}''', True, blue)
+            screen.blit(status_int, [screen_x + 170 + (margin * 2), 220 + (margin * 5)])
+            status_main_att = stats_font.render(f'''{active_unit.main_att}''', True, yellow)
+            screen.blit(status_main_att, [screen_x + 170 + (margin * 2), 220 + (margin * 6)])
         elif isinstance(active_unit, Character):
             # изменить вывод текста
             # тут колонка статов "имя", "атака", "хп", "макс хп"
-            my_text = repr(active_unit)  # передать текст
+            status_name = stats_font.render(f'''Name: {active_unit.name}''', True, purple)
+            screen.blit(status_name, [screen_x + (margin * 2), 220 + (margin * 3)])
+            status_dmg = stats_font.render(f'''Attack: {active_unit.get_attack_damage()}''', True, purple)
+            screen.blit(status_dmg, [screen_x + (margin * 2), 220 + (margin * 4)])
+            status_max_hp = stats_font.render(f'''Max HP: {active_unit.max_health}''', True, purple)
+            screen.blit(status_max_hp, [screen_x + (margin * 2), 220 + (margin * 5)])
+            status_hp = stats_font.render(f'''Current HP: {active_unit.get_current_health()}''', True, purple)
+            screen.blit(status_hp, [screen_x + (margin * 2), 220 + (margin * 6)])
             draw_portrait(active_unit.image)
-            text = font.render(my_text, True, purple)
-
-
-    screen.blit(text, [screen_x + (margin * 2), 220 + (margin * 3)])
     x = screen_x + ((status_bar - 40) // 2)
     y = screen_y - 250
     draw_arrows(x, y, white_square)
@@ -174,6 +193,7 @@ mas[4][5] = my_list[1]
 mas[3][3] = my_list[2]
 mas[4][2] = my_list[3]
 mas[1][0] = my_list[4]
+mas[0][4] = thief
 
 while True:
     # добавить строчку, которая будет рисовать картинку.

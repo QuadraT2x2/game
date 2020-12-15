@@ -43,6 +43,9 @@ class Character():
     def get_attack_damage(self):
         return self.__attack_damage
 
+    def get_current_health(self):
+        return self.__current_health
+
     def attack(self, other):
         if self.is_alive:
             if other.is_alive:

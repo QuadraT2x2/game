@@ -39,7 +39,10 @@ left = pygame.image.load("assets/left.jpg")
 right = pygame.image.load("assets/right.jpg")
 
 assasin = pygame.image.load("assets/assasin.jpg")
+assasin = pygame.transform.scale(assasin, (width, height))
 
 warrior = pygame.image.load("assets/warrior.jpg")
+warrior = pygame.transform.scale(warrior, (width, height))
 
 prophet = pygame.image.load("assets/prophet.jpg")
+prophet = pygame.transform.scale(prophet, (width, height))
